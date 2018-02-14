@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title> karen timeline</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+  </head>
+  <body ng-app="TLapp">
+
+    <div class="timeline" ng-controller="TLController as t"  >
+
+      <div class="esquina">
+      </div>
+      <div class="esquina der">
+      </div>
+
+
+      <div class="container-tl">
+        <header>
+          <div class="aux"></div>
+          <div class="header-container">
+
+
+            <div class="agno-calendario" ng-repeat="year in t.dates">
+              <span class="agno hide">{{year.name}}</span>
+              <div class="meses">
+                <div class="mes-calendario" ng-repeat="month in year.months">
+                  <span class="mes hide">{{month.name}}</span>
+                  <div class="dias">
+                    <div class="dia-calendario" ng-repeat="date in month.dates" >
+                      {{date}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            
+          </div>
+        </header>
+        <nav class="nav-left">
+          <div class="name" ng-repeat="student in t.students">
+            {{student.nombre}}
+          </div>
+        </nav>
+
+        <section class="container-days">
+          <div class="list-cube" ng-repeat="student in t.students">
+            <div class="cube" ng-repeat="asistencia in student.asistencias track by $index">
+              <span ng-if="asistencia == 1" class="oi oi-check"></span>
+            </div>
+          </div>
+        </section>
+
+        <nav class="nav-right">
+          <div class="item" ng-repeat="student in t.students">
+            <input id="" type="checkbox" name="" class="asistencia-check">
+            <button class="btn-delete">
+              <span class="oi oi-circle-x"></span>
+            </button>
+          </div>
+        </nav>
+
+
+      </div>
+    </div>
+
+
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="app.js"></script>
+
+
+    <script>
+      
+      $(function(){
+        $(".container-tl").on("scroll", function(ev){
+          var l = this.scrollLeft;
+          $(".nav-right").css({
+            right: l*-1
+          })
+        });
+      });
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,195 @@
+$width_day: 30px;
+$height_header_day: 20px;
+$height_content_day: 30px;
+
+
+$header_height: 20px;
+$nav_width: 70px;
+$nav_right_width: 100px;
+
+$container_bg : #eceff1; //grey-blue 50
+
+$header_bg: #78909c; // blue grey 400
+$nav_left_bg: #263238; //blue grey 900
+$nav_left_c: #eceff1; //grey-blue 50
+$nav_right_bg: #263238; //blue grey 900
+
+$cube_bg: #eceff1; //blue grey 50
+$cube_border_c: grey;
+
+$accent_color: #ff9800; //orange 500
+
+
+.hide{
+  display: none !important;
+}
+
+
+body{
+  margin: 0px;
+  padding: 0px;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box; // 1
+  }
+}
+
+
+.timeline{
+  position: relative;
+
+  .esquina{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    z-index: 4;
+    background: $nav_left_bg;
+    width: $nav_width;
+    height: $header_height;
+    &.der{
+      left: initial;
+      right: 15px; //15 scroll width
+      width: $nav_right_width;
+    }
+  }
+
+  .container-tl{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: scroll;
+    margin: 0px;
+    background: $container_bg;
+
+
+
+
+
+    header{
+      height: $header_height;
+      width: 5000px;
+      position: sticky;
+      top: 0px;
+      background: $header_bg;
+      z-index: 3;
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box; 
+        font-size: 12px;
+        line-height: 12px !important;
+      }
+      .header-container{
+        position: relative;
+        padding-left: $nav_width;
+        position: inline-block;
+      }
+      .agno-calendario{
+        display: inline-block;
+        .agno{
+          position: sticky;
+          left: $nav_width + 10px;
+          display: inline-block;
+          padding: 4px 10px 4px 4px;
+        }
+        .meses{
+          display: block;
+        }
+        .mes-calendario{
+          display: inline-block;
+          border-left: 1px solid $accent_color;
+          .mes{
+            display: inline-block;
+            position: sticky;
+            left: $nav_width + 10px;
+            padding: 4px 10px 4px 4px;
+          }
+          .dias{
+            .dia-calendario{
+              width: $width_day;
+              height: $height_header_day;
+              display: inline-block;
+              padding-top: 4px;
+              text-align:center;
+              color: white;
+              font-weight:bold;
+            }
+          }
+        }
+      }
+    }
+
+
+
+
+
+    nav.nav-left{
+      background: $nav_left_bg;
+      position: sticky;
+      left: 0px;
+      width: $nav_width;
+      height: 500px;
+      z-index: 2;
+      color: $nav_left_c;
+      .name{
+        height:$height_content_day; 
+        padding-left: 10px;
+        padding-top: 2px;
+      }
+    }
+
+    nav.nav-right{
+      background: $nav_right_bg;
+      position: absolute;
+      right: 0px;
+      top: $header_height;
+      width: $nav_right_width;
+      height: 500px;
+      z-index: 2;
+      .item{
+        height:$height_content_day;
+        input.asistencia-check{
+          margin: 0px 10px
+        }
+        button.btn-delete{
+          background: red;
+          cursor: pointer;
+          color: white;
+          border: none;
+          border-radius:5px;
+          text-align:center;
+          padding: 0px 5px;
+        }
+      }
+    }
+
+
+    .container-days{
+      left: $nav_width;
+      top: $header_height;
+      position:absolute;
+
+
+      .list-cube{
+        width: 900px;
+        display: block;
+        clear: both;
+        height: $height_content_day;
+        .cube{
+          border-right : 1px solid $cube_border_c;
+          border-bottom: 1px solid $cube_border_c;
+          background: $cube_bg;
+          display: inline-block;
+          position: relative;
+          height:$height_content_day;
+          width:$width_day;
+          text-align: center;
+          padding-top: 3px;
+          vertical-align: top;
+        }
+      }
+    }
+  }
+}
